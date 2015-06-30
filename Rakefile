@@ -16,6 +16,14 @@ task "db:drop" do
   rm_f 'db/db.sqlite3'
 end
 
+desc "populate the users table"
+task "db:populate" do
+  User.destroy_all
+  User.create(username: "Philemon", first_name: "Philemon" , last_name: "Selvaraj", email: "phil.lloyds@gmail.com",phone_number: "604-345-1232")
+  User.create(username: "Binu", first_name: "Binu" , last_name: "Lloyd", email: "binu.1088@gmail.com",phone_number: "604-345-1222")
+  User.create(username: "Allen", first_name: "Allen" , last_name: "Selvaraj", email: "allen.paul@gmail.com",phone_number: "604-345-1233")
+end
+
 task 'db:create_migration' do
   unless ENV["NAME"]
     puts "No NAME specified. Example usage: `rake db:create_migration NAME=create_users`"
